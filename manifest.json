@@ -1,0 +1,15 @@
+{
+  "name": "Reddit Preload GIFs",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Finds GIFs on Reddit and preloads them so that you do not need to wait when you view them",
+  "icons": { "16": "16.png",
+           "48": "48.png",
+          "128": "128.png" },
+  "content_scripts": [
+     { "all_frames": true, "js": [ "preload_gifs.js" ], "matches": [ "http://*/*" ] }
+  ],
+  "permissions": [
+	"http://reddit.com/*", "http://*.reddit.com/*"
+  ]
+}
