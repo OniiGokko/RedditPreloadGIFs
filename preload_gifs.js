@@ -12,21 +12,31 @@ function preload_gif(url) {
 			img.parentNode.removeChild(img);
 		}
 	};
-	var timeout = setTimeout(function() { if(img) { img.parentNode.removeChild(img); } }, 30000);
+	if(devmode == false) {
+		var timeout = setTimeout(function() { if(img) { img.parentNode.removeChild(img); } }, 30000);
+	} else {
+		img.onclick = new Function("remove_thumb(this)");
+	}
 }
 
-function frame_done(id, frame) {
-	frame.parentNode.removeChild(frame);
+function remove_thumb(that) {
+that.parentNode.removeChild(that);
 }
 
 function find_gifs() {
 	var links = document.getElementsByClassName('title');
 	var i = links.length;
 	while ( i-- ) {
-		if ( links[i].tagName == 'A' && links[i].getAttribute('href') != null && links[i].getAttribute('href').slice(-4) == '.gif' ) {
-			preload_gif(links[i].getAttribute('href'));
+		if ( links[i].tagName == 'A' && links[i].getAttribute('href') != null) {
+			if(links[i].getAttribute('href').slice(-4) == '.gif') {
+				preload_gif(links[i].getAttribute('href'));
+			} else {
+				if(links[i].getAttribute('href').search('imgur.com') >= 0 && links[i].getAttribute('href').search('imgur.com/a/') == -1) {
+					preload_gif(links[i].getAttribute('href')+'.gif');
+				}
+			}
 		}
 	}
 }
 
-window.addEventListener('load', function() { setTimeout(1000, find_gifs()); });
+window.addEventListener('load', find_gifs());
