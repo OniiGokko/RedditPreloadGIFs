@@ -1,6 +1,6 @@
 {
   "name": "Reddit Preload GIFs",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "manifest_version": 2,
   "description": "Finds GIFs on Reddit and preloads them so that you do not need to wait when you view them",
   "icons": { "16": "16.png",

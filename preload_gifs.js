@@ -27,14 +27,8 @@ function find_gifs() {
 	var links = document.getElementsByClassName('title');
 	var i = links.length;
 	while ( i-- ) {
-		if ( links[i].tagName == 'A' && links[i].getAttribute('href') != null) {
-			if(links[i].getAttribute('href').slice(-4) == '.gif') {
-				preload_gif(links[i].getAttribute('href'));
-			} else {
-				if(links[i].getAttribute('href').search('imgur.com') >= 0 && links[i].getAttribute('href').search('imgur.com/a/') == -1) {
-					preload_gif(links[i].getAttribute('href')+'.gif');
-				}
-			}
+		if ( links[i].tagName == 'A' && links[i].getAttribute('href') != null && links[i].getAttribute('href').slice(-4) == '.gif') {
+			preload_gif(links[i].getAttribute('href'));
 		}
 	}
 }
