@@ -2,14 +2,14 @@ var devmode = true;
 function preload_gif(url) {
 	var img = document.createElement('img');
 	img.src = url;
-	if(devmode == false) {
-		img.style.display = 'none';
-	}
+	img.style.display = 'none';
 	document.body.appendChild(img);
 	img.onload = function() {
 		clearTimeout(timeout);
 		if(devmode == false) {
 			img.parentNode.removeChild(img);
+		} else {
+			img.style.display = 'inline';
 		}
 	};
 	if(devmode == false) {
